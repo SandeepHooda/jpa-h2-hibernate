@@ -23,6 +23,11 @@ public class TestEndpoint {
 		return allBooks;
 	}
 	
+	@GetMapping(value="/findbook", produces = MediaType.APPLICATION_JSON_VALUE)
+	public BookDTO findbook(@RequestParam (name="bookid") long bookid) {
+	return bookSrv.findbook(bookid);
+}
+	
 	@GetMapping(value="/savebook", produces = MediaType.APPLICATION_JSON_VALUE)
 	public Long savebook(@RequestParam (name="bookid") long bookid) {
 		bookSrv.saveNewBook(bookid);
