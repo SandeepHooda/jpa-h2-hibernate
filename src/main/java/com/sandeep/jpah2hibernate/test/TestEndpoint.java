@@ -17,8 +17,15 @@ public class TestEndpoint {
 	BookService bookSrv;
 	
 	@GetMapping(value="/sayhello", produces = MediaType.APPLICATION_JSON_VALUE)
-		public List<BookDTO> sayhello() {
+	public List<BookDTO> sayhello( ) {
 		List<BookDTO> allBooks= bookSrv.getAllBooks();
+		allBooks.stream().forEach(System.out::println);
+		return allBooks;
+	}
+	
+	@GetMapping(value="/getBookPagination", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<BookDTO> getBookPagination(@RequestParam (name="page") int page, @RequestParam (name="pageSize") int pageSize ) {
+		List<BookDTO> allBooks= bookSrv.getBookPagination(page, pageSize);
 		allBooks.stream().forEach(System.out::println);
 		return allBooks;
 	}
